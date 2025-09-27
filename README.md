@@ -1,34 +1,33 @@
-# Django Crud with Docker
-Expense control crud application made with Django, Virtualenv and Docker
+# Django Crud con Docker
+Aplicación crud de control de gastos hecha con Django, Virtualenv y Docker
 
-### Running the application:
-To run this application without having to install all dependencies, use Docker and Docker Compose. Follow the instructions below:
-- If you don't have [Docker](https://docs.docker.com/install/) and [Docker Compose](https://docs.docker.com/compose/install/), install them by clicking on their respective links.
-- Next, clone or download this project. If you choose to clone, type:
+### Ejecutando la aplicación:
+Para ejecutar esta aplicación sin tener que instalar todas las dependencias, usa Docker y Docker Compose. Sigue las instrucciones a continuación:
+- Si no tienes [Docker](https://docs.docker.com/install/) y [Docker Compose](https://docs.docker.com/compose/install/), instálalos haciendo clic en sus respectivos enlaces.
+- A continuación, clona o descarga este proyecto. Si eliges clonar, escribe:
 ``` bash
 $ git clone https://github.com/isacmoura/django-crud-with-docker.git
 ```
-- Enter on the project folder:
+- Ingresa a la carpeta del proyecto:
 ```bash
 $ cd django-crud-with-docker
 ```
-- Then, run the **docker-compose** command:
+- Luego, ejecuta el comando **docker-compose**:
 ```bash
 $ docker-compose up -d
 ```
-You might have to use `sudo` and the command above.
+Es posible que tengas que usar `sudo` con el comando anterior.
+Este comando construirá los contenedores. Luego instalará pip (si no lo tienes) y usando pip instalaremos Virtualenv y Django. Finalmente, nuestro servidor comenzará a funcionar y se ejecutará en la dirección ip `0.0.0.0:8000`.
 
-This command will build the containers. Then will install pip (if you don't have) and using pip we'll install Virtualenv and Django. Finally, our server will start to work and run on the `0.0.0.0:8000` ip adress.
-
-### Post-instalation changes
-You can use your application at the `0.0.0.0:8000` adress, but, if you want, you can make some changes.
-To do this, follow the instructions:
-- Create the module:
-`docker-compose run web ./manage.py startapp app`. **change "app" to a name of your preference**
-- Run migrations:
+### Cambios post-instalación
+Puedes usar tu aplicación en la dirección `0.0.0.0:8000`, pero, si quieres, puedes hacer algunos cambios.
+Para hacer esto, sigue las instrucciones:
+- Crea el módulo:
+`docker-compose run web ./manage.py startapp app`. **cambia "app" por un nombre de tu preferencia**
+- Ejecuta las migraciones:
 `docker-compose run web ./manage.py migrate`
-- Create a superuser for Django Admin area:
+- Crea un superusuario para el área de Django Admin:
 `docker-compose run web ./manage.py createsuperuser`
 
-#### Contributions
-Feel free to contribute with this project, send a Pull Request or open a issue.
+#### Contribuciones
+Siéntete libre de contribuir con este proyecto, envía un Pull Request o abre un issue.
