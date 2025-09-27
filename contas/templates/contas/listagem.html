@@ -1,21 +1,44 @@
+{% load static %}
 <!doctype html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transações</title>
+    <link rel="stylesheet" href="{% static 'Css/style.css' %}">
 </head>
 <body>
-    <h2>Listagem</h2>
-    <ul>
-        {% for transacao in transacoes %}
-        <li><a href="{% url 'url_update' transacao.id %}"> {{ transacao.descricao }} - {{ transacao.data }} - {{transacao.valor }} -
-            {{transacao.categoria }}</a></li>
-        {% endfor %}
-    </ul>
+    <div class="container">
+        <header class="header-section">
+            <h2>Listagem de Transações</h2>
+            <p class="subtitle">Resumo de receitas e despesas</p>
+        </header>
 
-    <a href="{% url 'url_nova' %}">Novo</a>
+        <section class="content-section">
+            <ul>
+                {% for transacao in transacoes %}
+                <li>
+                    <a href="{% url 'url_update' transacao.id %}">
+                        <div class="transaction-item">
+                            <div class="transaction-icon">💰</div>
+                            <div class="transaction-details">
+                                <span class="transaction-desc">{{ transacao.descricao }}</span>
+                                <span class="transaction-category">{{ transacao.categoria }}</span>
+                            </div>
+                            <span class="transaction-date">{{ transacao.data }}</span>
+                            <span class="transaction-value{% if transacao.valor < 0 %} negative{% endif %}">
+                                {{ transacao.valor }}
+                            </span>
+                        </div>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+
+            <div class="footer-actions">
+                <a href="{% url 'url_nova' %}" class="btn-novo">+ Nova Transação</a>
+            </div>
+        </section>
+    </div>
 </body>
 </html>
