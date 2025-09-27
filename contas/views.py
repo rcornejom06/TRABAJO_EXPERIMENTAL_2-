@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Transacao
 from .forms import TransacaoForm
 # Create your views here.
@@ -24,7 +24,7 @@ def nova_transacao(request):
 
 
 def update(request, pk):
-    transacao = Transacao.objects.get(pk=pk)
+    transacao = get_object_or_404(Transacao, pk=pk)
     form = TransacaoForm(request.POST or None, instance=transacao)
 
     if form.is_valid():
@@ -34,6 +34,6 @@ def update(request, pk):
 
 
 def delete(request, pk):
-    transacao = Transacao.objects.get(pk=pk)
+    transacao = get_object_or_404(Transacao, pk=pk)
     transacao.delete()
     return redirect('url_listagem')
